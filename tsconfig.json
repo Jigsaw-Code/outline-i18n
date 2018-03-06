@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "none",
+    "declaration": false,
+    "removeComments": false,
+    "importHelpers": true,
+    "inlineSourceMap": true,
+    "pretty": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "lib": [
+      "es5",
+      "dom"
+    ],
+    "types": []
+  },
+  "include": [
+    "./*.ts"
+  ],
+  "compileOnSave": false
+}
