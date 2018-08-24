@@ -28,14 +28,22 @@ function makeLookUpLanguage(availableLanguages: string[]) {
   };
 }
 
-const browserLanguages = (navigator.languages || [navigator.language]) as string[];
+function getBrowserLanguages(): string[] {
+  // Ensure that navigator.languages is defined and not empty, as can be the case with some browsers
+  // (i.e. Chrome 59 on Electron).
+  const languages = navigator.languages as string[];
+  if (languages && languages.length > 0) {
+    return languages;
+  }
+  return [navigator.language];
+}
 
 // tslint:disable-next-line:no-any
 (window as any).OutlineI18n = {
   getBestMatchingLanguage(available: string[]): string |
   undefined {
     const lookUpAvailable = makeLookUpLanguage(available);
-    for (const candidate of browserLanguages) {
+    for (const candidate of getBrowserLanguages()) {
       const parts = candidate.split('-');
       while (parts.length) {
         const joined = parts.join('-');
